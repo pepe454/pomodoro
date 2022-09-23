@@ -8,7 +8,7 @@ def validate_timer(form, field):
 
 
 def validate_reward(form, field):
-    if field.data < 1:
+    if len(field.data) < 1:
         raise ValidationError("please enter something to do during the break")
 
 

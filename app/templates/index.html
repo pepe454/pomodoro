@@ -17,24 +17,41 @@
     {% endif %}
 
     <h2>Enter pomodoro session details below</h2>
+
     {% block content %}
     <h3>Timer Details</h3>
-    <form action="" method="post" novalidate>
+    <form action="" method="post" validate>
         {{ form.hidden_tag() }}
         <p>
             {{ form.focus_timer.label }}<br>
             {{ form.focus_timer(size=10) }}
+            {% for error in form.focus_timer.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.break_timer.label }}<br>
             {{ form.break_timer(size=10) }}
+            {% for error in form.break_timer.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.rewards.label }}<br>
             {{ form.rewards(size=32) }}
+            {% for error in form.rewards.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+
+    {% with messages = get_flashed_messages() %}
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+    {% endwith %}
+
     {% endblock %}
 </body>
 
