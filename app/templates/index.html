@@ -1,11 +1,41 @@
 <!doctype html>
 <html>
-	<head>
-		<title>{{ title }}</title>
-	</head>
-	<body>
-		<h1>{{ welcome }} - Enjoy your work session!</h1>
-		<h2>Enter pomodoro session details below</h2>
-		{% block content %}
-	</body>
+
+<head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Pomodoro Timer</title>
+    {% endif %}
+</head>
+
+<body>
+    {% if welcome %}
+    <h1>{{ welcome }} - Enjoy your work session!</h1>
+    {% else %}
+    <h1>Welcome to Pomodoro Timer - Enjoy your work session! </h1>
+    {% endif %}
+
+    <h2>Enter pomodoro session details below</h2>
+    {% block content %}
+    <h3>Timer Details</h3>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.focus_timer.label }}<br>
+            {{ form.focus_timer(size=10) }}
+        </p>
+        <p>
+            {{ form.break_timer.label }}<br>
+            {{ form.break_timer(size=10) }}
+        </p>
+        <p>
+            {{ form.rewards.label }}<br>
+            {{ form.rewards(size=32) }}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+    {% endblock %}
+</body>
+
 </html>
