@@ -8,8 +8,6 @@ from app import app, forms
 @app.route("/", methods=["GET", "POST"])
 @app.route("/index", methods=["GET", "POST"])
 def index():
-    title = "Pomodoro Timer"
-    welcome = "Welcome to Pomodor Timer"
     form = forms.PomodoroForm()
 
     if form.validate_on_submit():
@@ -17,9 +15,10 @@ def index():
         flash(f"Pomodoro timer requested with {focus} focus minutes and {brk} break minutes")
         return redirect('/timer')
 
-    return render_template("index.html", title=title, welcome=welcome, form=form)
+    welcome = "Welcome to Pomodor Timer"
+    return render_template("index.html", welcome=welcome, form=form)
 
 
 @app.route("/timer")
 def timer():
-    return "Timer page is a work in progress!"
+    return render_template("timers.html")

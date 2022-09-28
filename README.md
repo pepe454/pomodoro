@@ -1,4 +1,4 @@
-# POMDODOR
+# POMODORO
 
 Create pomodoro timers for productivity and focus. Customize pomodoro timer and break timer.
 
