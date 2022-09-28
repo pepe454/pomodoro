@@ -15,7 +15,7 @@ def validate_reward(form, field):
 
 class PomodoroForm(FlaskForm):
     focus_timer = IntegerField(
-        "How long do you want to focus?", validators=[validate_timer, DataRequired()]
+        "How long do you want to focus? (minutes)", validators=[validate_timer, DataRequired()]
     )
     break_timer = IntegerField(
         "How long do you want to rest?", validators=[validate_timer, DataRequired()]

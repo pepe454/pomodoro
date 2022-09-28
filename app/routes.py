@@ -1,8 +1,14 @@
-from time import sleep
+import os
 
-from flask import flash, redirect, render_template
+from flask import flash, redirect, render_template, send_from_directory
 
 from app import app, forms
+
+
+@app.route('/favicon.ico')
+def favicon():
+    static = os.path.join(app.root_path, "static")
+    return send_from_directory(static, "favicon.ico", mimetype="image/vnd.microsoft.icon")
 
 
 @app.route("/", methods=["GET", "POST"])
