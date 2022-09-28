@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import IntegerField, StringField, SubmitField, ValidationError
+from wtforms.validators import DataRequired
 
 
 def validate_timer(form, field):
@@ -13,8 +14,14 @@ def validate_reward(form, field):
 
 
 class PomodoroForm(FlaskForm):
-    focus_timer = IntegerField("How long do you want to focus?", validators=[validate_timer])
-    break_timer = IntegerField("How long do you want to rest?", validators=[validate_timer])
-    rewards = StringField("What is something you do to relax?", validators=[validate_reward])
+    focus_timer = IntegerField(
+        "How long do you want to focus?", validators=[validate_timer, DataRequired()]
+    )
+    break_timer = IntegerField(
+        "How long do you want to rest?", validators=[validate_timer, DataRequired()]
+    )
+    rewards = StringField(
+        "What is something you do to relax?", validators=[validate_reward, DataRequired()]
+    )
     submit = SubmitField("Start!")
 
